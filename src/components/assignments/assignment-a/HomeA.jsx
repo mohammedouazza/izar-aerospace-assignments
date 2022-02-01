@@ -9,8 +9,8 @@ import VelocityComponent from "./VelocityComponent";
 
 const HomeA = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.assignmentA);
-
+  const assignmantA = useSelector((state) => state.assignmentA);
+  const data = assignmantA.data;
   useEffect(() => {
     dispatch({ type: "SPECTRUM_STATUS_FETCH_REQUESTED" });
   }, []);
@@ -27,10 +27,16 @@ const HomeA = () => {
       <VelocityComponent veloctity={data.velocity} />
       <Row className="mt-2">
         <Col>
-          <AltitudeComponent altitude={data.altitude} />
+          <AltitudeComponent
+            altitude={data.altitude}
+            altitudeArr={assignmantA.altitudeArr}
+          />
         </Col>
         <Col>
-          <TemperatureComponent temp={data.temperature} />
+          <TemperatureComponent
+            temp={data.temperature}
+            temperatureArr={assignmantA.temperatureArr}
+          />
         </Col>
       </Row>
       <Row className="mt-2">
