@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import AltitudeComponent from "./AltitudeComponent";
@@ -10,6 +10,10 @@ import VelocityComponent from "./VelocityComponent";
 const HomeA = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.assignmentA);
+
+  useEffect(() => {
+    dispatch({ type: "SPECTRUM_STATUS_FETCH_REQUESTED" });
+  }, []);
 
   const onUpdate = () => {
     dispatch({ type: "SPECTRUM_STATUS_FETCH_REQUESTED" });
