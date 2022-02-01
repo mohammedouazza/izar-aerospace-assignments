@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <Row>
       {listAssignments.map((item) => (
-        <Col>
-          <ItemCardComponent key={item.id} item={item} />
+        <Col key={item.id}>
+          <ItemCardComponent item={item} />
         </Col>
       ))}
     </Row>
