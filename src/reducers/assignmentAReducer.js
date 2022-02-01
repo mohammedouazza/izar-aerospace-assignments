@@ -17,7 +17,6 @@ export const assignmentSlice = createSlice({
   initialState,
   reducers: {
     setAssignment: (state, action) => {
-      console.log("reducer", action);
       return action.payload;
     },
   },

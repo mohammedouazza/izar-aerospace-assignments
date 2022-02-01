@@ -1,9 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import AltitudeComponent from "./AltitudeComponent";
-import DataItemComponent from "./DataItemComponent";
 import GoingUpComponent from "./GoingUpComponent";
 import StatusMessageComponent from "./StatusMessageComponent";
 import TemperatureComponent from "./TemperatureComponent";
@@ -12,7 +10,6 @@ import VelocityComponent from "./VelocityComponent";
 const HomeA = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.assignmentA);
-  console.log("hello", data);
 
   const onUpdate = () => {
     dispatch({ type: "SPECTRUM_STATUS_FETCH_REQUESTED" });

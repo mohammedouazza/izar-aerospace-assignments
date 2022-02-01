@@ -8,9 +8,9 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="#" className="text-uppercase">
           <Link to="/" style={linkStyle}>
-            Izar Aerospace
+            Spectrum
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
