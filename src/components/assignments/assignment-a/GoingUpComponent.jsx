@@ -8,13 +8,11 @@ function GoingUpComponent({ goingUp }) {
     <Card className="text-center">
       <Card.Header className=" display-5">Going Up</Card.Header>
       <Card.Body>
-        <Card.Text className="display-3">
-          {goingUp ? (
-            <FontAwesomeIcon icon={faArrowUp} color="green" />
-          ) : (
-            <FontAwesomeIcon icon={faArrowDown} color="red" />
-          )}
-        </Card.Text>
+        {goingUp ? (
+          <FontAwesomeIcon icon={faArrowUp} color="green" />
+        ) : (
+          <FontAwesomeIcon icon={faArrowDown} color="red" />
+        )}
       </Card.Body>
     </Card>
   );

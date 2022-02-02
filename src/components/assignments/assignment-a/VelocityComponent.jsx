@@ -9,15 +9,19 @@ highchartsMore(Highcharts);
 solidGauge(Highcharts);
 
 function VelocityComponent({ veloctity }) {
-  const vx = veloctity.x / (500 * 1000 * 60 * 60);
-  const vy = veloctity.y / (500 * 1000 * 60 * 60);
-  const vz = veloctity.z / (500 * 1000 * 60 * 60);
+  const velX = veloctity.x || veloctity.X;
+  const velY = veloctity.y || veloctity.Y;
+  const velZ = veloctity.z || veloctity.Z;
+
+  const vx = (veloctity.x || veloctity.X) / (500 * 1000 * 60 * 60);
+  const vy = (veloctity.y || veloctity.Y) / (500 * 1000 * 60 * 60);
+  const vz = (veloctity.z || veloctity.Z) / (500 * 1000 * 60 * 60);
 
   const vf = Math.sqrt(vx * vx + vy * vy + vz * vz);
 
   const options = {
     chart: {
-      type: "solidgauge",
+      type: "gauge",
       plotBackgroundColor: null,
       plotBackgroundImage: null,
       plotBorderWidth: 0,
@@ -82,19 +86,19 @@ function VelocityComponent({ veloctity }) {
           <Col>
             <Card.Title>X</Card.Title>
             <Card.Text className="display-1">
-              {veloctity.x.toFixed(2)}
+              {(velX && velX.toFixed(2)) || "0.00"}
             </Card.Text>
           </Col>
           <Col>
             <Card.Title>Y</Card.Title>
             <Card.Text className="display-1">
-              {veloctity.y.toFixed(2)}
+              {(velY && velY.toFixed(2)) || "0.00"}
             </Card.Text>
           </Col>
           <Col>
             <Card.Title>Z</Card.Title>
             <Card.Text className="display-1">
-              {veloctity.z.toFixed(2)}
+              {(velZ && velZ.toFixed(2)) || "0.00"}
             </Card.Text>
           </Col>
         </Row>
