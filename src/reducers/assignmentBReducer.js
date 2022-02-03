@@ -24,7 +24,6 @@ export const assignmentSliceB = createSlice({
   initialState,
   reducers: {
     setAssignmentB: (state, action) => {
-      //console.log("AssignmentB", action);
       return {
         ...state,
         data: action.payload,
@@ -35,7 +34,6 @@ export const assignmentSliceB = createSlice({
       };
     },
     setError: (state, action) => {
-      //console.log("AssignmentB", action);
       return { ...state, error: action.payload, open: false };
     },
   },

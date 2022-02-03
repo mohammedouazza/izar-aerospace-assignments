@@ -23,16 +23,13 @@ function* fetchSpectrumStatus() {
     });
     yield put(setAssignment(resp.data));
   } catch (e) {
-    yield put({ type: "SPECTRUM_STATUS_FETCH_FAILED", message: e.message });
+    //console.log(e.message);
   }
 }
 
 function spectrumWSInitChannel() {
   return eventChannel((emitter) => {
     socket = new WebSocket(spectrumWSUrl);
-    socket.onopen = function (e) {
-      //return emitter(setOpen(true));
-    };
 
     socket.onmessage = function (event) {
       return emitter(setAssignmentB(JSON.parse(event.data)));
@@ -44,7 +41,6 @@ function spectrumWSInitChannel() {
       } else {
         return emitter(setError("Connection died"));
       }
-      //return emitter(setOpen(false));
     };
 
     socket.onerror = function (error) {
@@ -58,9 +54,6 @@ function spectrumWSInitChannel() {
     return () => {
       socket.off("ping");
     };
-    /*return () => {
-      socket.close();
-    };*/
   });
 }
 
@@ -70,8 +63,6 @@ function spectrumChangeDirectionInitChannel(action) {
       spectrumChangeDirectionUrl +
         (action.payload !== "" ? "&direction=" + action.payload : "")
     );
-
-    socketChangeDirection.onopen = function (e) {};
 
     socketChangeDirection.onmessage = function (event) {
       return emitter(setAssignmentB(event.data));
@@ -94,9 +85,6 @@ function spectrumChangeDirectionInitChannel(action) {
     return () => {
       socketChangeDirection.off("ping");
     };
-    /*return () => {
-      socketChangeDirection.close();
-    };*/
   });
 }
 
@@ -107,10 +95,8 @@ function* fetchSpectrumWS() {
       let action = yield take(channel);
       yield put(action);
     }
-
-    //yield put(setAssignment(resp.data));
   } catch (e) {
-    yield put({ type: "SPECTRUM_WS_FETCH_FAILED", message: e.message });
+    yield put(setError(e.message));
   }
 }
 
@@ -121,7 +107,6 @@ function* fetchSpectrumChangeDirection(action) {
       let action2 = yield take(channel2);
       yield put(action2);
     }
-    //yield put(setAssignment(resp.data));
   } catch (e) {
     yield put({
       type: "SPECTRUM_CHANGE_DIRECTION_FETCH_FAILED",

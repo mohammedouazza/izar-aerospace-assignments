@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Nav, Navbar, Link } from "react-bootstrap";
 
 const linkStyle = { textDecoration: "none", color: "black" };
 
