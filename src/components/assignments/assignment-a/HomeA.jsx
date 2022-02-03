@@ -21,10 +21,13 @@ const HomeA = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={onUpdate} className=" mt-4 mb-4">
-        Update
-      </Button>
-      <VelocityComponent veloctity={data.velocity} />
+      <div className="text-center">
+        <Button variant="primary" onClick={onUpdate} className="t mt-4 mb-4">
+          Update
+        </Button>
+      </div>
+
+      <VelocityComponent velocity={data.velocity} />
       <Row className="mt-2">
         <Col>
           <AltitudeComponent

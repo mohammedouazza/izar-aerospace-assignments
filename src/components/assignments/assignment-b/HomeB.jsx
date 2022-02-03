@@ -7,6 +7,8 @@ import GoingUpComponent from "../assignment-a/GoingUpComponent";
 import StatusMessageComponent from "../assignment-a/StatusMessageComponent";
 import TemperatureComponent from "../assignment-a/TemperatureComponent";
 
+let doOnce = true;
+
 const HomeB = () => {
   const dispatch = useDispatch();
 
@@ -16,13 +18,16 @@ const HomeB = () => {
   const open = assignmentB.open;
 
   useEffect(() => {
-    dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+    if (doOnce) dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+    doOnce = false;
     return () => {
       dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
       dispatch({ type: "SPECTRUM_CHANGE_DIRECTION_CLOSE_REQUESTED" });
+      doOnce = true;
     };
   }, []);
 
+  console.log(data, doOnce);
   const handleDirection = (e) => {
     dispatch({
       type: "SPECTRUM_CHANGE_DIRECTION_FETCH_REQUESTED",
@@ -38,7 +43,7 @@ const HomeB = () => {
             <Alert.Heading>{open ? "Live" : "Server Closed"}</Alert.Heading>
           </Alert>
         </Col>
-        {data.GoingUp && (
+        {!data.GoingUp && doOnce && (
           <Col>
             <Form.Group className="mb-3 col-3 text-center">
               <Form.Label>Direction</Form.Label>
@@ -59,7 +64,7 @@ const HomeB = () => {
         )}
       </Row>
 
-      <VelocityComponent veloctity={data.Velocity} />
+      <VelocityComponent velocity={data.Velocity} />
       <Row className="mt-2">
         <Col>
           <AltitudeComponent

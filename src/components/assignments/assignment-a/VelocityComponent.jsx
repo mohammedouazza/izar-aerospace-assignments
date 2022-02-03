@@ -8,16 +8,17 @@ import HighchartsReact from "highcharts-react-official";
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
 
-function VelocityComponent({ veloctity }) {
-  const velX = veloctity.x || veloctity.X;
-  const velY = veloctity.y || veloctity.Y;
-  const velZ = veloctity.z || veloctity.Z;
+function VelocityComponent({ velocity }) {
+  const velX = velocity.x || velocity.X;
+  const velY = velocity.y || velocity.Y;
+  const velZ = velocity.z || velocity.Z;
 
-  const vx = (veloctity.x || veloctity.X) / (500 * 1000 * 60 * 60);
-  const vy = (veloctity.y || veloctity.Y) / (500 * 1000 * 60 * 60);
-  const vz = (veloctity.z || veloctity.Z) / (500 * 1000 * 60 * 60);
+  const vx = (velocity.x || velocity.X) / (500 * 1000 * 60 * 60);
+  const vy = (velocity.y || velocity.Y) / (500 * 1000 * 60 * 60);
+  const vz = (velocity.z || velocity.Z) / (500 * 1000 * 60 * 60);
 
-  const vf = Math.sqrt(vx * vx + vy * vy + vz * vz);
+  let vf = Math.sqrt(vx * vx + vy * vy + vz * vz);
+  vf = isNaN(vf) ? 0 : vf;
 
   const options = {
     chart: {
@@ -66,6 +67,10 @@ function VelocityComponent({ veloctity }) {
     },
     title: {
       text: "",
+    },
+    yAxis: {
+      min: 0,
+      max: 20,
     },
     series: [
       {

@@ -7,7 +7,7 @@ function GoingUpComponent({ goingUp }) {
   return (
     <Card className="text-center">
       <Card.Header className=" display-5">Going Up</Card.Header>
-      <Card.Body>
+      <Card.Body className="display-3">
         {goingUp ? (
           <FontAwesomeIcon icon={faArrowUp} color="green" />
         ) : (
