@@ -20,8 +20,10 @@ const HomeB = () => {
 
   useEffect(() => {
     if (doOnce) {
-      dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
-      showDirection();
+      setTimeout(() => {
+        dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+        showDirection();
+      }, 1000);
     }
     return () => {
       dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
@@ -30,6 +32,8 @@ const HomeB = () => {
     };
   }, []);
   const handleDirection = (e) => {
+    dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
+    dispatch({ type: "SPECTRUM_CHANGE_DIRECTION_CLOSE_REQUESTED" });
     dispatch({
       type: "SPECTRUM_CHANGE_DIRECTION_FETCH_REQUESTED",
       payload: e.target.value,
