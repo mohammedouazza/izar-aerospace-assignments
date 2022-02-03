@@ -51,8 +51,8 @@ function AltitudeComponent({ altitude, altitudeArr }) {
     <Card className="text-center">
       <Card.Header className=" display-5">Altitude</Card.Header>
       <Card.Body>
+        <HighchartsReact highcharts={Highcharts} options={options} />
         <Card.Text className="display-1">
-          <HighchartsReact highcharts={Highcharts} options={options} />
           {(altitude / 1000).toFixed(2)} km
         </Card.Text>
       </Card.Body>

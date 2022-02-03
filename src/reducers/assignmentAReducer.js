@@ -9,7 +9,7 @@ const initialState = {
     },
     altitude: 0,
     temperature: 0,
-    goingUp: false,
+    goingUp: true,
     statusMessage: "Still Ok",
   },
   altitudeArr: [],

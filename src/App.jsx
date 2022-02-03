@@ -1,8 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
-
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import HomeA from "./components/assignments/assignment-a/HomeA";
 import HomeB from "./components/assignments/assignment-b/HomeB";
 import HomeC from "./components/assignments/assignment-c/HomeC";

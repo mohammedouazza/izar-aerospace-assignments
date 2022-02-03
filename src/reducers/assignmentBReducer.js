@@ -4,16 +4,19 @@ const initialState = {
   open: false,
   error: "",
   data: {
-    velocity: {
+    Velocity: {
       x: 0,
       y: 0,
       z: 0,
     },
-    altitude: 0,
-    temperature: 0,
-    goingUp: false,
-    statusMessage: "Still Ok",
+    Altitude: 0,
+    Temperature: 0,
+    GoingUp: true,
+    StatusMessage: "Still Ok",
   },
+  altitudeArr: [],
+  temperatureArr: [],
+  velocityArr: [{ x: 0, y: 0, z: 0 }],
 };
 
 export const assignmentSliceB = createSlice({
@@ -21,17 +24,23 @@ export const assignmentSliceB = createSlice({
   initialState,
   reducers: {
     setAssignmentB: (state, action) => {
-      return { ...state, data: action.payload };
+      //console.log("AssignmentB", action);
+      return {
+        ...state,
+        data: action.payload,
+        open: true,
+        error: "",
+        altitudeArr: [...state.altitudeArr, action.payload.Altitude],
+        temperatureArr: [...state.temperatureArr, action.payload.Temperature],
+      };
     },
     setError: (state, action) => {
-      return { ...state, error: action.payload };
-    },
-    setOpen: (state, action) => {
-      return { ...state, open: action.payload };
+      //console.log("AssignmentB", action);
+      return { ...state, error: action.payload, open: false };
     },
   },
 });
 
-export const { setAssignmentB, setError, setOpen } = assignmentSliceB.actions;
+export const { setAssignmentB, setError } = assignmentSliceB.actions;
 
 export default assignmentSliceB.reducer;

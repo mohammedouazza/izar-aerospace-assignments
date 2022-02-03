@@ -7,6 +7,9 @@ import GoingUpComponent from "../assignment-a/GoingUpComponent";
 import StatusMessageComponent from "../assignment-a/StatusMessageComponent";
 import TemperatureComponent from "../assignment-a/TemperatureComponent";
 
+let doOnce = true;
+let showDir = false;
+
 const HomeB = () => {
   const dispatch = useDispatch();
 
@@ -14,12 +17,18 @@ const HomeB = () => {
   const data = assignmentB.data;
   const error = assignmentB.error;
   const open = assignmentB.open;
-  console.log(assignmentB);
 
   useEffect(() => {
-    dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+    if (doOnce) {
+      dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+      showDirection();
+    }
+    return () => {
+      dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
+      dispatch({ type: "SPECTRUM_CHANGE_DIRECTION_CLOSE_REQUESTED" });
+      doOnce = true;
+    };
   }, []);
-
   const handleDirection = (e) => {
     dispatch({
       type: "SPECTRUM_CHANGE_DIRECTION_FETCH_REQUESTED",
@@ -27,6 +36,10 @@ const HomeB = () => {
     });
   };
 
+  const showDirection = () => {
+    showDir = !data.GoingUp;
+    doOnce = false;
+  };
   return (
     <>
       <Row className="text-center">
@@ -35,7 +48,7 @@ const HomeB = () => {
             <Alert.Heading>{open ? "Live" : "Server Closed"}</Alert.Heading>
           </Alert>
         </Col>
-        {!data.goingUp && (
+        {showDir && (
           <Col>
             <Form.Group className="mb-3 col-3 text-center">
               <Form.Label>Direction</Form.Label>
@@ -56,21 +69,27 @@ const HomeB = () => {
         )}
       </Row>
 
-      <VelocityComponent veloctity={data.velocity} />
+      <VelocityComponent velocity={data.Velocity} />
       <Row className="mt-2">
         <Col>
-          <AltitudeComponent altitude={data.altitude} />
+          <AltitudeComponent
+            altitude={data.Altitude}
+            altitudeArr={assignmentB.altitudeArr}
+          />
         </Col>
         <Col>
-          <TemperatureComponent temp={data.temperature} />
+          <TemperatureComponent
+            temp={data.Temperature}
+            temperatureArr={assignmentB.temperatureArr}
+          />
         </Col>
       </Row>
       <Row className="mt-2">
         <Col>
-          <GoingUpComponent goingUp={data.goingUp} />
+          <GoingUpComponent goingUp={data.GoingUp} />
         </Col>
         <Col>
-          <StatusMessageComponent message={data.statusMessage} />
+          <StatusMessageComponent message={data.StatusMessage} />
         </Col>
       </Row>
     </>
