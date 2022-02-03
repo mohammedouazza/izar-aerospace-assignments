@@ -53,16 +53,23 @@ const HomeB = () => {
           </Alert>
         </Col>
         {showDir && (
-          <Col>
-            <Form.Group className="mb-3 col-3 text-center">
-              <Form.Label>Direction</Form.Label>
-              <Form.Select onChange={handleDirection}>
-                <option value="">--</option>
-                <option value={true}>true</option>
-                <option value={false}>false</option>
-              </Form.Select>
-            </Form.Group>
-          </Col>
+          <Row>
+            <Col>
+              <Form.Group className="mb-3 col-3 text-center">
+                <Form.Label>Direction</Form.Label>
+                <Form.Select onChange={handleDirection}>
+                  <option value="">--</option>
+                  <option value={true}>true</option>
+                  <option value={false}>false</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col>
+              <Alert variant={"danger"}>
+                <Alert.Heading>Rocket went down at launch</Alert.Heading>
+              </Alert>
+            </Col>
+          </Row>
         )}
         {error && (
           <Col>
