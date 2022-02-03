@@ -12,7 +12,9 @@ const HomeA = () => {
   const assignmantA = useSelector((state) => state.assignmentA);
   const data = assignmantA.data;
   useEffect(() => {
-    dispatch({ type: "SPECTRUM_STATUS_FETCH_REQUESTED" });
+    setTimeout(() => {
+      dispatch({ type: "SPECTRUM_STATUS_FETCH_REQUESTED" });
+    }, 1000);
   }, []);
 
   const onUpdate = () => {

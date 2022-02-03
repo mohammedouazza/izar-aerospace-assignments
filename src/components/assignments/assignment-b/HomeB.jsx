@@ -20,8 +20,10 @@ const HomeB = () => {
 
   useEffect(() => {
     if (doOnce) {
-      dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
-      showDirection();
+      setTimeout(() => {
+        dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+        showDirection();
+      }, 1000);
     }
     return () => {
       dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
