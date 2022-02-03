@@ -55,6 +55,9 @@ function VelocityComponent({ velocity }) {
           outerRadius: "107%",
         },
         {
+          // default background
+        },
+        {
           backgroundColor: "#DDD",
           borderWidth: 0,
           outerRadius: "105%",
