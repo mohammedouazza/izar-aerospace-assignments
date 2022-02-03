@@ -30,6 +30,8 @@ const HomeB = () => {
     };
   }, []);
   const handleDirection = (e) => {
+    dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
+    dispatch({ type: "SPECTRUM_CHANGE_DIRECTION_CLOSE_REQUESTED" });
     dispatch({
       type: "SPECTRUM_CHANGE_DIRECTION_FETCH_REQUESTED",
       payload: e.target.value,
