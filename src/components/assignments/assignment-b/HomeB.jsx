@@ -26,8 +26,6 @@ const HomeB = () => {
       doOnce = true;
     };
   }, []);
-
-  console.log(data, doOnce);
   const handleDirection = (e) => {
     dispatch({
       type: "SPECTRUM_CHANGE_DIRECTION_FETCH_REQUESTED",
