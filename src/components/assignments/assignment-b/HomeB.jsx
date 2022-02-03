@@ -8,6 +8,7 @@ import StatusMessageComponent from "../assignment-a/StatusMessageComponent";
 import TemperatureComponent from "../assignment-a/TemperatureComponent";
 
 let doOnce = true;
+let showDir = false;
 
 const HomeB = () => {
   const dispatch = useDispatch();
@@ -18,8 +19,10 @@ const HomeB = () => {
   const open = assignmentB.open;
 
   useEffect(() => {
-    if (doOnce) dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
-    doOnce = false;
+    if (doOnce) {
+      dispatch({ type: "SPECTRUM_WS_FETCH_REQUESTED" });
+      showDirection();
+    }
     return () => {
       dispatch({ type: "SPECTRUM_WS_CLOSE_REQUESTED" });
       dispatch({ type: "SPECTRUM_CHANGE_DIRECTION_CLOSE_REQUESTED" });
@@ -33,6 +36,10 @@ const HomeB = () => {
     });
   };
 
+  const showDirection = () => {
+    showDir = !data.GoingUp;
+    doOnce = false;
+  };
   return (
     <>
       <Row className="text-center">
@@ -41,7 +48,7 @@ const HomeB = () => {
             <Alert.Heading>{open ? "Live" : "Server Closed"}</Alert.Heading>
           </Alert>
         </Col>
-        {!data.GoingUp && doOnce && (
+        {showDir && (
           <Col>
             <Form.Group className="mb-3 col-3 text-center">
               <Form.Label>Direction</Form.Label>
